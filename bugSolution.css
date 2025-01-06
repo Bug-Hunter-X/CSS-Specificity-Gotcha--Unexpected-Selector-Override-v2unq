@@ -1,0 +1,39 @@
+Several solutions exist to resolve the unexpected behavior caused by CSS specificity:
+
+1. **Increase Specificity of the Overridden Rule:**  Make the less specific rule (`p { color: red; }`) more specific so that it can override the `div p` rule.  For example, you could add a class to your `<p>` elements and create a rule that is more specific.
+
+```css
+div p {
+  color: blue;
+}
+
+p.general {
+  color: red;
+}
+```
+
+Then apply this class to the paragraphs you want to style red:
+
+```html
+<div>
+  <p class="general">This paragraph is red</p>
+</div>
+```
+
+2. **Use !important (Generally Discouraged):** Using `!important` will force the rule to be applied, overriding any other rules, even if they are more specific. However, this is generally discouraged because it can make your CSS harder to maintain and debug.
+
+```css
+div p {
+  color: blue;
+}
+
+p {
+  color: red !important;
+}
+```
+
+3. **Reorder Stylesheets:** If possible, rearrange the order of your linked stylesheets.  Put the stylesheet with the rule you want to have priority (the one you want to override) after the stylesheet containing the overriding rule.
+
+4. **Use a more specific selector:** If applicable, you can create a class or ID for the `p` elements which are supposed to be red, making it more specific than `div p`.
+
+The best approach is typically to avoid `!important` and focus on writing well-structured and specific CSS rules from the start.
